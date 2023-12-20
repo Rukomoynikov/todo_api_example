@@ -45,3 +45,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "rodauth-rails", "~> 1.12"
