@@ -48,3 +48,9 @@ end
 
 
 gem "rodauth-rails", "~> 1.12"
+
+gem "rswag", "~> 2.13"
+
+gem "multi_json", "~> 1.15"
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
