@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TodoItemsController < ApplicationController
-  before_action :set_todo_item, only: %i[show update destroy]
+  before_action :set_todo_item, only: %i[show update destroy toggle]
 
   # GET /todo_items
   def index
@@ -38,6 +38,11 @@ class TodoItemsController < ApplicationController
   # DELETE /todo_items/1
   def destroy
     @todo_item.destroy!
+  end
+
+  def toggle
+    @todo_item.update(completed: !@todo_item.completed)
+    render json: @todo_item
   end
 
   private

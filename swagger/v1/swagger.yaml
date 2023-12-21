@@ -4,15 +4,40 @@ info:
   title: API V1
   version: v1
 paths:
-  "/todo_lists":
+  "/todo_items":
     post:
-      summary: Creates a todo list
+      summary: Attaches todo item to todo list
       tags:
-      - TodoLists
+      - TodoItem
       parameters: []
       responses:
         '201':
           description: todo list created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                todo_list_id:
+                  type: number
+              required:
+              - body
+  "/todo_lists":
+    post:
+      summary: Creates a todo list
+      tags:
+      - TodoList
+      parameters: []
+      responses:
+        '201':
+          description: todo list created
+        '422':
+          description: invalid request
       requestBody:
         content:
           application/json:
@@ -22,32 +47,25 @@ paths:
                 title:
                   type: string
               required:
-              - todo_list
-  "/create-account":
-    post:
-      summary: Creates a user
+              - title
+    get:
+      summary: Retreive todo list
       tags:
-      - Users
+      - TodoList
       parameters: []
       responses:
         '200':
-          description: user created
+          description: one todo list retreived
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                email:
-                  type: string
-                password:
-                  type: string
-                password-confirm:
+                id:
                   type: string
               required:
-              - email
-              - password
-              - password-confirm
+              - id
 servers:
 - url: https://{defaultHost}
   variables:

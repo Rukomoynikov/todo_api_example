@@ -26,3 +26,6 @@ Style/Documentation:
 
 Rails/DangerousColumnNames:
   Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false

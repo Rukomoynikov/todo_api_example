@@ -133,4 +133,17 @@ RSpec.describe '/todo_items' do
       end.to change(TodoItem, :count).by(-1)
     end
   end
+
+  describe 'PATCH /toggle' do
+    context 'with valid parameters' do
+      let(:todo_item) { create(:todo_item) }
+
+      it 'toggles completed for the requested todo_item' do
+        expect do
+          patch toggle_todo_item_url(todo_item), as: :json
+          todo_item.reload
+        end.to change(todo_item, :completed)
+      end
+    end
+  end
 end

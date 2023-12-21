@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :todo_items
+  resources :todo_items do
+    member do
+      patch :toggle
+    end
+  end
   resources :todo_lists
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
