@@ -4,6 +4,25 @@ info:
   title: API V1
   version: v1
 paths:
+  "/todo_lists":
+    post:
+      summary: Creates a todo list
+      tags:
+      - TodoLists
+      parameters: []
+      responses:
+        '201':
+          description: todo list created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+              required:
+              - todo_list
   "/create-account":
     post:
       summary: Creates a user
@@ -12,7 +31,7 @@ paths:
       parameters: []
       responses:
         '200':
-          description: blog created
+          description: user created
       requestBody:
         content:
           application/json:
@@ -23,9 +42,12 @@ paths:
                   type: string
                 password:
                   type: string
+                password-confirm:
+                  type: string
               required:
               - email
               - password
+              - password-confirm
 servers:
 - url: https://{defaultHost}
   variables:
