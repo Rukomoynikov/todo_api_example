@@ -13,8 +13,6 @@ paths:
       responses:
         '201':
           description: todo list created
-        '422':
-          description: invalid request
       requestBody:
         content:
           application/json:
@@ -35,7 +33,7 @@ paths:
       parameters: []
       responses:
         '201':
-          description: todo list created
+          description: blog created
         '422':
           description: invalid request
       requestBody:
@@ -67,7 +65,4 @@ paths:
               required:
               - id
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+- url: http://localhost:3000

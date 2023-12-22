@@ -24,12 +24,7 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com'
-            }
-          }
+          url: Rails.env.production? || Rails.env.development? ? 'https://todoapiexample-production.up.railway.app' : 'http://localhost:3000'
         }
       ]
     }
