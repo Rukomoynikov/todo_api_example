@@ -44,7 +44,6 @@ group :development, :test do
   gem 'factory_bot', '~> 6.4'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'rspec-rails', '~> 6.1.0'
-  gem 'rswag', '~> 2.13'
   gem 'rubocop-factory_bot', '~> 2.24', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', '~> 2.25', require: false
@@ -60,3 +59,4 @@ end
 gem 'multi_json', '~> 1.15'
 gem 'rodauth-rails', '~> 1.12'
 gem 'shoulda', '~> 4.0'
+gem 'rswag', '~> 2.13'
