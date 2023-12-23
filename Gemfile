@@ -60,3 +60,5 @@ gem 'multi_json', '~> 1.15'
 gem 'rodauth-rails', '~> 1.12'
 gem 'rswag', '~> 2.13'
 gem 'shoulda', '~> 4.0'
+
+gem "rack-cors", "~> 2.0"
