@@ -3,11 +3,11 @@
 require 'rails_helper'
 require 'swagger_helper'
 
-describe 'Blogs API' do
+describe 'Todo API' do
   path '/todo_lists' do
     post 'Creates a todo list' do
-      tags 'TodoList'
-      consumes 'application/json'
+        tags 'TodoList'
+        consumes 'application/json'
       parameter name: :todo_list, in: :body, schema: {
         type: :object,
         properties: {
@@ -29,22 +29,25 @@ describe 'Blogs API' do
         run_test!
       end
     end
+  end
 
-    get 'Retreive todo list' do
-      tags 'TodoList'
-      consumes 'application/json'
-      parameter name: :todo_list, in: :body, schema: {
-        type: :object,
-        properties: {
-          id: { type: :string }
-        },
-        required: ['id']
-      }
+  path '/todo_lists/{id}' do
+      get 'Retreive a todo list' do
+          tags 'TodoList'
+          consumes 'application/json'
 
-      response '200', 'one todo list retreived' do
-        let(:todo_list) { { id: TodoList.create(title: 'New title').id } }
-        run_test!
-      end
-    end
+          parameter name: :id, in: :path, type: :string
+            response '200', 'one todo list retreived' do
+              todo_list = TodoList.create(title: 'New title')
+              todo_list.todo_items.create(body: 'New body')
+
+              let(:id) { todo_list.id }
+
+              run_test! do |response|
+                content = response.parsed_body
+                expect(content['todo_items'].count).to eq(1)
+              end
+            end
+          end
   end
 end

@@ -25,6 +25,20 @@ paths:
                   type: number
               required:
               - body
+  "/todo_items/{id}/toggle":
+    patch:
+      summary: Toggles completed or not completed for one todo item
+      tags:
+      - TodoItem
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: todo list toggled
   "/todo_lists":
     post:
       summary: Creates a todo list
@@ -46,23 +60,19 @@ paths:
                   type: string
               required:
               - title
+  "/todo_lists/{id}":
     get:
-      summary: Retreive todo list
+      summary: Retreive a todo list
       tags:
       - TodoList
-      parameters: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: one todo list retreived
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: string
-              required:
-              - id
 servers:
-- url: http://localhost:3000
+- url: http://127.0.0.1:3000

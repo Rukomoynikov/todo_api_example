@@ -28,4 +28,25 @@ describe 'TodoItems API' do
       end
     end
   end
+
+  path '/todo_items/{id}/toggle' do
+    patch 'Toggles completed or not completed for one todo item' do
+      tags 'TodoItem'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '200', 'todo list toggled' do
+          todo_list = TodoList.create(title: 'New title')
+          todo_item = todo_list.todo_items.create(body: 'New body')
+
+          let(:id) { todo_item.id }
+
+        run_test! do |response|
+          content = response.parsed_body
+
+          expect(content['completed']).to eq(true)
+        end
+      end
+    end
+  end
 end
