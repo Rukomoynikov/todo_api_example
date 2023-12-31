@@ -46,8 +46,14 @@ RSpec.describe '/todo_lists' do
   describe 'GET /show' do
     it 'renders a successful response' do
       todo_list = TodoList.create! valid_attributes
+      todo_list.todo_items.create(body: 'Todo item')
+
       get todo_list_url(todo_list), as: :json
+
       expect(response).to be_successful
+
+      content = response.parsed_body
+      expect(content['todo_items'].count).to eq(1)
     end
   end
 
