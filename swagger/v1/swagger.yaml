@@ -8,10 +8,10 @@ paths:
     post:
       summary: Attaches todo item to todo list
       tags:
-      - TodoItem
+        - TodoItem
       parameters: []
       responses:
-        '201':
+        "201":
           description: todo list created
       requestBody:
         content:
@@ -24,31 +24,31 @@ paths:
                 todo_list_id:
                   type: number
               required:
-              - body
+                - body
   "/todo_items/{id}/toggle":
     patch:
       summary: Toggles completed or not completed for one todo item
       tags:
-      - TodoItem
+        - TodoItem
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: todo list toggled
   "/todo_lists":
     post:
       summary: Creates a todo list
       tags:
-      - TodoList
+        - TodoList
       parameters: []
       responses:
-        '201':
+        "201":
           description: blog created
-        '422':
+        "422":
           description: invalid request
       requestBody:
         content:
@@ -59,20 +59,20 @@ paths:
                 title:
                   type: string
               required:
-              - title
+                - title
   "/todo_lists/{id}":
     get:
       summary: Retreive a todo list
       tags:
-      - TodoList
+        - TodoList
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: one todo list retreived
 servers:
-- url: http://127.0.0.1:3000
+  - url: https://todoapiexample-production.up.railway.app/
