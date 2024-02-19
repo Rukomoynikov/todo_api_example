@@ -32,22 +32,39 @@ describe 'Todo API' do
   end
 
   path '/todo_lists/{id}' do
-      get 'Retreive a todo list' do
-          tags 'TodoList'
-          consumes 'application/json'
+    get 'Retrieve a todo list' do
+      tags 'TodoList'
+      consumes 'application/json'
 
-          parameter name: :id, in: :path, type: :string
-            response '200', 'one todo list retreived' do
-              todo_list = TodoList.create(title: 'New title')
-              todo_list.todo_items.create(body: 'New body')
+      parameter name: :id, in: :path, type: :string
+        response '200', 'one todo list retrieved' do
+          todo_list = TodoList.create(title: 'New title')
+          todo_list.todo_items.create(body: 'New body')
 
-              let(:id) { todo_list.id }
+          let(:id) { todo_list.id }
 
-              run_test! do |response|
-                content = response.parsed_body
-                expect(content['todo_items'].count).to eq(1)
-              end
-            end
+          run_test! do |response|
+            content = response.parsed_body
+            expect(content['todo_items'].count).to eq(1)
           end
+        end
+    end
+
+    delete 'Delete todo list' do
+      tags 'TodoList'
+      consumes 'application/json'
+
+      parameter name: :id, in: :path, type: :string
+      response '204', 'one todo list removed' do
+        todo_list = TodoList.create(title: 'New title')
+        todo_list.todo_items.create(body: 'New body')
+
+        let(:id) { todo_list.id }
+
+        run_test! do
+          expect(TodoList.find_by(id: todo_list.id)).to be_nil
+        end
+      end
+    end
   end
 end

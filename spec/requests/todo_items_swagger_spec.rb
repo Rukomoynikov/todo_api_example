@@ -29,6 +29,25 @@ describe 'TodoItems API' do
     end
   end
 
+  path '/todo_items/{id}' do
+    delete 'Delete todo item' do
+      tags 'TodoItem'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '204', 'one todo item removed' do
+        todo_list = TodoList.create(title: 'New title')
+        todo_list.todo_items.create(body: 'New body')
+
+        let(:id) { todo_list.todo_items.last.id }
+
+        run_test! do
+          expect(TodoItem.find_by(id: id)).to be_nil
+        end
+      end
+    end
+  end
+
   path '/todo_items/{id}/toggle' do
     patch 'Toggles completed or not completed for one todo item' do
       tags 'TodoItem'

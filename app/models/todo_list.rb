@@ -2,7 +2,7 @@
 
 class TodoList < ApplicationRecord
   belongs_to :account, optional: true
-  has_many :todo_items
+  has_many :todo_items, dependent: :destroy
   validates :title, presence: true, length: { minimum: 5 }
 
   scope :anonymous, -> { where(account: null) }
