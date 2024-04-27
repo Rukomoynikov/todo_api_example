@@ -24,7 +24,7 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: Rails.env.production? || Rails.env.development? ? 'https://todoapiexample-production.up.railway.app' : 'http://127.0.0.1:3000'
+          url: 'https://todoapiexample-production.up.railway.app'
         }
       ]
     }
